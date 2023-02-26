@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -17,6 +19,8 @@ class AddCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final icons = getIcons();
     var sqareWidth = Get.width - 12.0.wp;
+
+    final cardDatabaseRef = homeCtrl.database.child('/taskCard');
 
     //TODO change container size
     return Container(
@@ -84,7 +88,7 @@ class AddCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20)),
                       minimumSize: const Size(150, 40),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (homeCtrl.formKey.currentState!.validate()) {
                         int icon =
                             icons[homeCtrl.chipIndex.value].icon!.codePoint;
@@ -99,6 +103,17 @@ class AddCard extends StatelessWidget {
                         homeCtrl.addTask(task)
                             ? EasyLoading.showSuccess('Successfully created')
                             : EasyLoading.showError('Duplicate Task');
+
+                        //How to insert data into database
+                        try {
+                          await cardDatabaseRef
+                              .child('/cards')
+                              .push()
+                              .set(task.toJson());
+                          log('Card has been written to database');
+                        } catch (e) {
+                          log('You got an error $e');
+                        }
                       }
                     },
                     child: const Text('Confirm'),

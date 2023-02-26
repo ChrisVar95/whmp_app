@@ -39,7 +39,6 @@ class DrawerNav extends Drawer {
           ListTile(
             leading: const Icon(
               Icons.person,
-              color: kPurpleDark,
             ),
             title: const Text('Account'),
             onTap: () {
@@ -52,7 +51,6 @@ class DrawerNav extends Drawer {
           ListTile(
             leading: const Icon(
               Icons.calendar_month_rounded,
-              color: kPurpleDark,
             ),
             title: const Text('Calendar'),
             onTap: () {
@@ -64,7 +62,6 @@ class DrawerNav extends Drawer {
           ListTile(
             leading: const Icon(
               Icons.collections_bookmark_rounded,
-              color: kPurpleDark,
             ),
             title: const Text('Saved Items'),
             onTap: () {
@@ -79,7 +76,6 @@ class DrawerNav extends Drawer {
           ListTile(
             leading: const Icon(
               Icons.email_rounded,
-              color: kPurpleDark,
             ),
             title: const Text('Email Us'),
             onTap: () {
@@ -91,7 +87,6 @@ class DrawerNav extends Drawer {
           ListTile(
             leading: const Icon(
               Icons.info_rounded,
-              color: kPurpleDark,
             ),
             title: const Text('About Us'),
             onTap: () {
@@ -103,7 +98,6 @@ class DrawerNav extends Drawer {
           ListTile(
             leading: const Icon(
               Icons.description_rounded,
-              color: kPurpleDark,
             ),
             title: const Text('Privacy Policy'),
             onTap: () {
@@ -118,7 +112,6 @@ class DrawerNav extends Drawer {
           ListTile(
             leading: const Icon(
               Icons.logout_rounded,
-              color: kPurpleDark,
             ),
             title: const Text('Logout'),
             onTap: () {

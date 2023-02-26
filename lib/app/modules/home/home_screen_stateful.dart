@@ -1,4 +1,3 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -31,15 +30,8 @@ class _HomeScreenStatefulWidgetState extends State<HomeScreenStatefulWidget> {
     ReportPage(),
   ];
 
-  void databaseReferenceTest() {
-    final counter = DateTime.now();
-    DatabaseReference testRef = FirebaseDatabase.instance.ref().child("test");
-    testRef.set("Hello World $counter");
-  }
-
   void _onItemTapped(int index) {
     setState(() {
-      databaseReferenceTest();
       _selectedIndex = index;
     });
   }

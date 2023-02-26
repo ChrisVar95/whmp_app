@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,8 @@ import '../../data/services/storage/repository.dart';
 class HomeController extends GetxController {
   TaskRepository taskRepository;
   HomeController({required this.taskRepository});
+
+  final DatabaseReference database = FirebaseDatabase.instance.ref();
 
   final formKey = GlobalKey<FormState>();
   final editController = TextEditingController();

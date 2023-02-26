@@ -66,7 +66,7 @@ class ReportPage extends StatelessWidget {
                 currentStep: completedTasks,
                 stepSize: 20,
                 selectedColor: kYellowDark,
-                unselectedColor: Colors.white10,
+                unselectedColor: Color.fromARGB(51, 115, 115, 115),
                 padding: 0,
                 width: 150,
                 height: 150,
@@ -74,7 +74,16 @@ class ReportPage extends StatelessWidget {
                 roundedCap: (_, __) => true,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text('${createdTasks == 0 ? 0 : percent}%')],
+                  children: [
+                    Text(
+                      '${createdTasks == 0 ? 0 : percent}%',
+                      style: TextStyle(
+                        color: kPurple,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22.0.sp,
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),

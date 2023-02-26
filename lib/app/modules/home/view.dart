@@ -20,9 +20,9 @@ class HomePage extends GetView<HomeController> {
             child: Text(
               'My List',
               style: TextStyle(
-                  fontSize: 24.0.sp,
-                  fontWeight: FontWeight.bold,
-                  color: kPurpleDark),
+                fontSize: 24.0.sp,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Obx(

@@ -60,6 +60,7 @@ class MyApp extends StatelessWidget {
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
     final themeNotifier = Provider.of<ThemeNotifier>(context);
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme().lightTheme,

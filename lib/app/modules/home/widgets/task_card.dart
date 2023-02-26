@@ -34,7 +34,6 @@ class TaskCard extends StatelessWidget {
       },
       child: Container(
         width: squareWidth,
-        height: squareWidth / 2,
         margin: EdgeInsets.all(3.0.wp),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
@@ -47,53 +46,101 @@ class TaskCard extends StatelessWidget {
             )
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
-            Container(
-              decoration: const BoxDecoration(
-                  color: Colors.white, shape: BoxShape.circle),
-              margin: EdgeInsets.all(3.0.wp),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    value: calculateTotalSteps(),
-                    color: color,
-                    backgroundColor: Colors.white,
-                  ),
-                  Icon(
-                    IconData(task.icon, fontFamily: 'MaterialIcons'),
-                    color: color,
-                  ),
-                ],
-              ),
+            SizedBox(
+              width: 10,
             ),
-            //TODO
             Padding(
-              padding: EdgeInsets.all(6.0.wp),
+              padding: EdgeInsets.symmetric(vertical: 2.0.hp),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.white, shape: BoxShape.circle),
+                    margin: EdgeInsets.all(3.0.wp),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          value: calculateTotalSteps(),
+                          color: color,
+                          backgroundColor: Colors.white,
+                        ),
+                        Icon(
+                          IconData(task.icon, fontFamily: 'MaterialIcons'),
+                          color: color,
+                        ),
+                      ],
+                    ),
+                  ),
                   Text(
                     task.title,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12.0.sp,
-                    ),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22.0.sp,
+                        color: Colors.white),
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(
-                    height: 2.0.wp,
-                  ),
-                  Text(
-                    '${task.todos?.length ?? 0} Task',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    ),
-                  ),
+                  //TODO
                 ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 4.0.hp),
+              child: Padding(
+                padding: EdgeInsets.only(left: 4.0.wp),
+                child: Obx(
+                  () => homeCtrl.doingTodos.isEmpty &&
+                          homeCtrl.doneTodos.isEmpty
+                      ? Text(
+                          '${task.todos?.length ?? 0} Tasks',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                          ),
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ...homeCtrl.doingTodos
+                                .map((element) => Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 20,
+                                          height: 20,
+                                          child: Checkbox(
+                                            fillColor: MaterialStateProperty
+                                                .resolveWith(
+                                                    (states) => Colors.grey),
+                                            value: element['done'],
+                                            onChanged: (value) {
+                                              homeCtrl
+                                                  .doneTodo(element['title']);
+                                            },
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 4.0.wp,
+                                        ),
+                                        Text(
+                                          element['title'],
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ))
+                                .toList(),
+                            if (homeCtrl.doingTodos.isNotEmpty)
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 5.0.wp),
+                                child: const Divider(
+                                  thickness: 2,
+                                ),
+                              ),
+                          ],
+                        ),
+                ),
               ),
             ),
           ],
