@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "109372866360",
+    "firebase_url": "https://whmp-app-default-rtdb.europe-west1.firebasedatabase.app/",
+    "project_id": "whmp-app",
+    "storage_bucket": "whmp-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109372866360:android:cb53d528f225fa49494bcd",
+        "android_client_info": {
+          "package_name": "com.example.whmp_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109372866360-m9ii61ddc4m7r4t1b5rdt6ktdo88u435.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChPUfxLOJ8eqLbyXDwtr43zKJr8m8HONQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109372866360-m9ii61ddc4m7r4t1b5rdt6ktdo88u435.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
