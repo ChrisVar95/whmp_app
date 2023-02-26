@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 import 'package:whmp_app/app/core/utils/extensions.dart';
+import 'package:whmp_app/app/core/values/colors.dart';
 import '../../../data/model/task.dart';
 import '../../../widgets/icons.dart';
 import '../controller.dart';
@@ -59,9 +60,9 @@ class AddCard extends StatelessWidget {
                                 final index = icons.indexOf(e);
                                 return ChoiceChip(
                                   //TODO choose color
-                                  selectedColor: Colors.amber,
+                                  selectedColor: kYellowLight,
+                                  backgroundColor: Colors.transparent,
                                   pressElevation: 0,
-                                  backgroundColor: Colors.white,
                                   label: e,
                                   selected: homeCtrl.chipIndex.value == index,
                                   onSelected: (bool selected) {
@@ -78,7 +79,7 @@ class AddCard extends StatelessWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       //TODO change button color
-                      backgroundColor: Colors.blue,
+                      backgroundColor: kYellow,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       minimumSize: const Size(150, 40),
@@ -107,16 +108,17 @@ class AddCard extends StatelessWidget {
             ),
           );
           homeCtrl.editController.clear();
+
           homeCtrl.changeChipIndex(0);
         },
         child: DottedBorder(
-          color: Colors.grey[400]!,
+          color: kYellow,
           dashPattern: const [8, 4],
           child: Center(
             child: Icon(
               Icons.add,
               size: 10.0.wp,
-              color: Colors.grey,
+              color: kYellow,
             ),
           ),
         ),

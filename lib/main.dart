@@ -26,15 +26,15 @@ Future<void> main() async {
     runApp(
       ChangeNotifierProvider<ThemeNotifier>(
         create: (BuildContext context) {
-          String? theme = value.getString(Constants.APP_THEME);
+          String? theme = value.getString(Constants.appTheme);
           if (theme == null ||
               theme == "" ||
-              theme == Constants.SYSTEM_DEFAULT) {
-            value.setString(Constants.APP_THEME, Constants.SYSTEM_DEFAULT);
+              theme == Constants.systemDefault) {
+            value.setString(Constants.appTheme, Constants.systemDefault);
             return ThemeNotifier(ThemeMode.system);
           }
           return ThemeNotifier(
-              theme == Constants.DARK ? ThemeMode.dark : ThemeMode.light);
+              theme == Constants.dark ? ThemeMode.dark : ThemeMode.light);
         },
         child: MyApp(),
       ),
@@ -72,8 +72,8 @@ class MyApp extends StatelessWidget {
             log('Error within Futurebuilder! ${snapshot.error.toString()}');
             return const Text('Something went wrong');
           } else if (snapshot.hasData) {
-            //return LoginScreen();
-            return HomeScreenStatefulWidget(title: 'Lilac: Daily Checklist');
+            return LoginScreen();
+            //return const HomeScreenStatefulWidget(                title: 'Lilac: Daily Checklist');
           } else {
             return const Center(
               child: CircularProgressIndicator(),

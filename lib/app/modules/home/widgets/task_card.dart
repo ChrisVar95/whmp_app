@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:whmp_app/app/core/utils/extensions.dart';
 import 'package:whmp_app/app/core/values/colors.dart';
 import 'package:whmp_app/app/modules/detail/view.dart';
@@ -12,6 +11,16 @@ class TaskCard extends StatelessWidget {
   final homeCtrl = Get.find<HomeController>();
   final Task task;
   TaskCard({super.key, required this.task});
+
+  double calculateTotalSteps() {
+    double total = 0;
+    if (!homeCtrl.isTodoEmpty(task)) {
+      int totalSteps = task.todos!.length;
+      int currentStep = homeCtrl.getDoneTodo(task);
+      if (currentStep != 0) total = currentStep / totalSteps;
+    }
+    return total;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +38,12 @@ class TaskCard extends StatelessWidget {
         margin: EdgeInsets.all(3.0.wp),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
-          color: kPurple,
+          color: kPurpleDark,
           boxShadow: const [
             BoxShadow(
-              color: Colors.grey,
-              blurRadius: 7,
-              offset: Offset(0, 7),
+              color: kDark,
+              blurRadius: 3,
+              offset: Offset(0, 1),
             )
           ],
         ),
@@ -42,18 +51,16 @@ class TaskCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              decoration:
-                  BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+              decoration: const BoxDecoration(
+                  color: Colors.white, shape: BoxShape.circle),
               margin: EdgeInsets.all(3.0.wp),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
                   CircularProgressIndicator(
-                    //TODO return %
-                    value: 0.9,
+                    value: calculateTotalSteps(),
                     color: color,
                     backgroundColor: Colors.white,
-                    //
                   ),
                   Icon(
                     IconData(task.icon, fontFamily: 'MaterialIcons'),

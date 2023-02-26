@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:whmp_app/app/core/utils/extensions.dart';
+import 'package:whmp_app/app/modules/detail/widgets/done_list.dart';
 
 import '../home/controller.dart';
 import 'widgets/doing_list.dart';
@@ -19,7 +19,7 @@ class TaskDetails extends StatelessWidget {
     var color = HexColor.fromHex(task.color);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Details'),
+        title: const Text('Details'),
         leading: BackButton(onPressed: () {
           homeCtrl.updateTodos();
           homeCtrl.changeTask(null);
@@ -32,7 +32,7 @@ class TaskDetails extends StatelessWidget {
         child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.all(8.0.wp),
+              padding: EdgeInsets.only(left: 8.0.wp, top: 4.0.wp),
               child: Row(
                 children: [
                   Icon(
@@ -108,10 +108,8 @@ class TaskDetails extends StatelessWidget {
                   focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                   ),
-                  prefixIcon: Icon(
-                    //TODO
+                  prefixIcon: const Icon(
                     Icons.check_box_outline_blank,
-                    color: Colors.grey,
                   ),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -127,17 +125,22 @@ class TaskDetails extends StatelessWidget {
                         homeCtrl.editController.clear();
                       }
                     },
-                    icon: Icon(Icons.done),
+                    icon: const Icon(Icons.done),
                   ),
                 ),
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
                     return 'Please enter your todo item';
                   }
+                  return null;
                 },
               ),
             ),
+            SizedBox(
+              height: 5.0.wp,
+            ),
             DoingList(),
+            DoneList(),
           ],
         ),
       ),

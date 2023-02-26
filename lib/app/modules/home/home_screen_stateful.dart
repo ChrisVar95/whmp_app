@@ -8,8 +8,8 @@ import 'package:whmp_app/app/data/model/task.dart';
 import 'package:whmp_app/app/modules/home/widgets/add_dialog.dart';
 
 import 'view.dart';
-import '../../../screens/progress.dart';
-import '../../../nav/bottom_nav.dart';
+import '../report/view.dart';
+import 'bottom_nav.dart';
 import '../../../nav/pop_up_menu.dart';
 import '../../../nav/drawer_nav.dart';
 
@@ -26,9 +26,9 @@ class HomeScreenStatefulWidget extends StatefulWidget {
 class _HomeScreenStatefulWidgetState extends State<HomeScreenStatefulWidget> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    ProgressPage(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const HomePage(),
+    ReportPage(),
   ];
 
   void databaseReferenceTest() {
@@ -61,17 +61,18 @@ class _HomeScreenStatefulWidgetState extends State<HomeScreenStatefulWidget> {
         builder: (_, __, ___) {
           return Obx(
             () => FloatingActionButton(
+              foregroundColor: Colors.white,
               backgroundColor: const HomePage().controller.deleting.value
                   ? kRed
                   : kYellowDark,
               onPressed: () {
-                if (HomePage().controller.tasks.isEmpty) {
+                if (const HomePage().controller.tasks.isEmpty) {
                   var task = const Task(
                     title: 'General Task',
                     icon: personIcon,
                     color: 'FFA39431',
                   );
-                  HomePage().controller.addTask(task);
+                  const HomePage().controller.addTask(task);
                 }
                 Get.to(() => AddDialog(), transition: Transition.downToUp);
               },

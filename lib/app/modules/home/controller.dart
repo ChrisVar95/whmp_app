@@ -30,18 +30,28 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
+  //todo DELETE if not needed
+  final tabIndex = 0.obs;
+  void changeTabIndex(int index) {
+    tabIndex.value = index;
+  }
+
+  // Resets selected icon index when adding card
   void changeChipIndex(int value) {
     chipIndex.value = value;
   }
 
+  //Changes bool value when deleting cards
   void changeDeleting(bool value) {
     deleting.value = value;
   }
 
+  //When selecting Task type on the add todo
   void changeTask(Task? select) {
     task.value = select;
   }
 
+  //Responsible for showing and saving tasks on the correct cards
   void changeTodos(List<dynamic> select) {
     doingTodos.clear();
     doneTodos.clear();
@@ -56,6 +66,7 @@ class HomeController extends GetxController {
     }
   }
 
+  //Saves todo in the correct task category card
   bool updateTask(Task task, String title) {
     var todos = task.todos ?? [];
     if (containTodo(todos, title)) {
@@ -70,6 +81,7 @@ class HomeController extends GetxController {
     return true;
   }
 
+  //Checks for duplicate Tasks
   bool containTodo(List todos, String title) {
     return todos.any((element) => element['title'] == title);
   }
@@ -123,5 +135,50 @@ class HomeController extends GetxController {
     doneTodos.add(doneTodo);
     doingTodos.refresh();
     doneTodos.refresh();
+  }
+
+  void deleteDoneTodos(dynamic doneTodo) {
+    int index = doneTodos
+        .indexWhere((element) => mapEquals<String, dynamic>(doneTodo, element));
+    doneTodos.removeAt(index);
+    doingTodos.refresh();
+  }
+
+  bool isTodoEmpty(Task task) {
+    return task.todos == null || task.todos!.isEmpty;
+  }
+
+  int getDoneTodo(Task task) {
+    var res = 0;
+    for (var i = 0; i < task.todos!.length; i++) {
+      if (task.todos![i]['done'] == true) {
+        res += 1;
+      }
+    }
+    return res;
+  }
+
+  int getTotalTask() {
+    var res = 0;
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].todos != null) {
+        res += tasks[i].todos!.length;
+      }
+    }
+    return res;
+  }
+
+  int getTotalDoneTasks() {
+    var res = 0;
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].todos != null) {
+        for (var j = 0; j < tasks[i].todos!.length; j++) {
+          if (tasks[i].todos![j]['done'] == true) {
+            res += 1;
+          }
+        }
+      }
+    }
+    return res;
   }
 }

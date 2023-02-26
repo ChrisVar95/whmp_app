@@ -14,17 +14,20 @@ class DoingList extends StatelessWidget {
     return Obx(() => homeCtrl.doingTodos.isEmpty && homeCtrl.doneTodos.isEmpty
         ? Column(
             children: [
+              Padding(
+                padding: EdgeInsets.all(10.0.wp),
+                child: Text(
+                  'Add Tasks',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.0.sp,
+                  ),
+                ),
+              ),
               Image.asset(
                 'lib/assets/icons/document.png',
                 fit: BoxFit.cover,
                 width: 65.0.wp,
-              ),
-              Text(
-                'Add Task',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0.sp,
-                ),
               ),
             ],
           )
@@ -62,8 +65,11 @@ class DoingList extends StatelessWidget {
                       ))
                   .toList(),
               if (homeCtrl.doingTodos.isNotEmpty)
-                const Divider(
-                  thickness: 2,
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.0.wp),
+                  child: const Divider(
+                    thickness: 2,
+                  ),
                 )
             ],
           ));

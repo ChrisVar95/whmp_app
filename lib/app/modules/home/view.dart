@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:whmp_app/app/core/utils/extensions.dart';
+import 'package:whmp_app/app/core/values/colors.dart';
 import 'package:whmp_app/app/modules/home/controller.dart';
 import 'package:whmp_app/app/modules/home/widgets/task_card.dart';
 
@@ -19,9 +20,9 @@ class HomePage extends GetView<HomeController> {
             child: Text(
               'My List',
               style: TextStyle(
-                fontSize: 24.0.sp,
-                fontWeight: FontWeight.bold,
-              ),
+                  fontSize: 24.0.sp,
+                  fontWeight: FontWeight.bold,
+                  color: kPurpleDark),
             ),
           ),
           Obx(

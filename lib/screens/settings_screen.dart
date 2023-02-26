@@ -26,7 +26,7 @@ class _SettingState extends State<SettingScreen> {
     themeNotifier = Provider.of<ThemeNotifier>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(Constants.SETTING),
+        title: Text(Constants.setting),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -72,13 +72,13 @@ class _SettingState extends State<SettingScreen> {
 
   void onThemeChanged(String value) async {
     var prefs = await SharedPreferences.getInstance();
-    if (value == Constants.SYSTEM_DEFAULT) {
+    if (value == Constants.systemDefault) {
       themeNotifier.setThemeMode(ThemeMode.system);
-    } else if (value == Constants.DARK) {
+    } else if (value == Constants.dark) {
       themeNotifier.setThemeMode(ThemeMode.dark);
     } else {
       themeNotifier.setThemeMode(ThemeMode.light);
     }
-    prefs.setString(Constants.APP_THEME, value);
+    prefs.setString(Constants.appTheme, value);
   }
 }
